@@ -19,7 +19,7 @@ public class MainJavaFX extends Application {
         core.initLabyrinthe(); // initialisation du labyrinthe
         Vue vue = new vue2D.javafx.Vue(core.labyrinthe); // creation de la vue
         core.initSprites(vue); // creation des sprites dans la vue
-        
+        System.out.println("test");
         stage.setScene(vue.scene);
         stage.setTitle("Labyrinthe : " +  System.getProperty("user.name"));
         stage.show();
