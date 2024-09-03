@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import static labyrinthe.ESalle.NORMALE;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     public void charger(String file) throws IOException {
         this.clear();
         List<String> lignes = Files.readAllLines(Paths.get(file));
+        Salle salle;
         // dimensions
         String entete = lignes.get(0);
         String[] mots = entete.split(" ");
@@ -39,7 +41,10 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         // salles
         for (String ligne : lignes){
             mots = ligne.split(" ");
-            // ...
+            if (mots[2].equals("N")) {
+                salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), NORMALE, this);
+                this.add(salle);
+            }
         }
     }
     
