@@ -67,7 +67,7 @@ public class Salle implements ISalle{
     
     /**
      * Cette méthode vérifie si la salle est dans l'étage
-     * @return 
+     * @return un booléen , true si la salle existe dans l'étage, false sinon
      */
     private boolean estDansEtage(Salle salle){
         int largeur=salle.getEtage().getLargeur();
@@ -77,11 +77,10 @@ public class Salle implements ISalle{
     }
     
     /**
-     * Retourne les coordonnées de toutes les cases voisines.
+     * Retourne la liste  de toutes les salles voisines à la salle passé en paramètre .
      * 
-     * @param coord coordonnées de la case considérée
-     * @param taille taille du plateau (carré)
-     * @return les coordonnées de toutes les cases voisines
+     * @param salle : la salle dont on veut connaitre les voisines
+     * @return  la liste  de toutes les salles voisines à la salle passé en paramètre
      */
     private ArrayList<Salle> voisines(ISalle salle) {
         ArrayList<Salle> voisines = new ArrayList<>();
@@ -90,15 +89,20 @@ public class Salle implements ISalle{
                 voisines.add(suivante(salle,dir));
             }         
         }
+        if (salle.getType().equals(ESalle.ESCALIER_MONTANT)) {
+            voisines.add(new Salle(salle.getX(),salle.getY(),ESalle.ESCALIER_DESCENDANT,new Etage(salle.getEtage().getNum()+1)));
+        }else if (salle.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
+            voisines.add(new Salle(salle.getX(),salle.getY(),ESalle.ESCALIER_MONTANT,new Etage(salle.getEtage().getNum()-1)));
+        }
         return voisines;
     }
 
      /**
-     * Renvoie la salle suivante
-     *
-     * @param d la direction à suivre
-     * @return les coordonnées de la case suivante
-     */
+      * Cette méthode retourne la salle adjacente à la salle passé en paramètre en fonction de la direction
+      * @param salle la salle 
+      * @param d la direction
+      * @return la salle adjacente à la salle passé en paramètre en fonction de la direction
+      */
     private Salle suivante(ISalle salle, EDirection d) {
         return new Salle(salle.getX() + EDirection.mvtVertic(d), 
                 salle.getY() + EDirection.mvtHoriz(d),ESalle.NORMALE, etage);
@@ -106,7 +110,7 @@ public class Salle implements ISalle{
     
     @Override
     public boolean estAdjacente(ISalle autre) {
-        Arraylist<Salle> salleAdjacentes= voisines(autre);
+        ArrayList<Salle> salleAdjacentes= voisines(this);
         return salleAdjacentes.contains(autre);
     }
     
