@@ -41,12 +41,32 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         // salles
         for (String ligne : lignes){
             mots = ligne.split(" ");
-            if (mots[2].equals("N")) {
-                salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), NORMALE, this);
+            switch (mots[2]) {
+                case "N":
+                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), NORMALE, this);
+                    this.add(salle);
+                    break;
+                case "M":
+                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ESCALIER_MONTANT, this);
                 this.add(salle);
+                break;
+                case "D":
+                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ESCALIER_DESCENDANT, this);
+                    this.add(salle);
+                    break;
+                case "E":
+                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ENTREE, this);
+                    this.add(salle); 
+                    break;
+                case "S":
+                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ENTREE, this);
+                    this.add(salle);   
+                    break;
             }
         }
     }
+    
+
     
     @Override
     public int getLargeur() {
