@@ -1,6 +1,5 @@
 package labyrinthe;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import personnages.IPersonnage;
@@ -10,10 +9,19 @@ import personnages.IPersonnage;
  * @author professor team
  */
 public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
+
     
     private IEtage etageCourant = new Etage();
     
-    
+       public Labyrinthe() {
+           try {
+               etageCourant.charger("etages/etage1N.txt");
+                Etage etage2=new Etage();
+                etage2.charger("etages/etage2N.txt");
+           } catch (Exception e) {
+               System.out.println(e.getMessage());
+           }
+    }
 
     @Override
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
