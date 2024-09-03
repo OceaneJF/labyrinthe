@@ -4,6 +4,7 @@
  */
 package labyrinthe;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -63,10 +64,50 @@ public class Salle implements ISalle{
     public IEtage getEtage() {
         return etage;
     }
+    
+    /**
+     * Cette méthode vérifie si la salle est dans l'étage
+     * @return 
+     */
+    private boolean estDansEtage(Salle salle){
+        int largeur=salle.getEtage().getLargeur();
+        int hauteur=salle.getEtage().getHauteur();
+        return salle.getX()>=0 && salle.getX()<largeur && salle.getY()>=0 && salle.getY()<hauteur; 
+        
+    }
+    
+    /**
+     * Retourne les coordonnées de toutes les cases voisines.
+     * 
+     * @param coord coordonnées de la case considérée
+     * @param taille taille du plateau (carré)
+     * @return les coordonnées de toutes les cases voisines
+     */
+    private ArrayList<Salle> voisines(ISalle salle) {
+        ArrayList<Salle> voisines = new ArrayList<>();
+        for (EDirection dir : EDirection.values()) {
+            if (estDansEtage(suivante(salle,dir))) {
+                voisines.add(suivante(salle,dir));
+            }         
+        }
+        return voisines;
+    }
 
+     /**
+     * Renvoie la salle suivante
+     *
+     * @param d la direction à suivre
+     * @return les coordonnées de la case suivante
+     */
+    private Salle suivante(ISalle salle, EDirection d) {
+        return new Salle(salle.getX() + EDirection.mvtVertic(d), 
+                salle.getY() + EDirection.mvtHoriz(d),ESalle.NORMALE, etage);
+    }
+    
     @Override
     public boolean estAdjacente(ISalle autre) {
-        return false;
+        Arraylist<Salle> salleAdjacentes= voisines(autre);
+        return salleAdjacentes.contains(autre);
     }
     
     /**
