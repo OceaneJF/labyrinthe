@@ -65,16 +65,6 @@ public class Salle implements ISalle{
         return etage;
     }
     
-    /**
-     * Cette méthode vérifie si la salle est dans l'étage
-     * @return un booléen , true si la salle existe dans l'étage, false sinon
-     */
-    private boolean estDansEtage(Salle salle){
-        int largeur=salle.getEtage().getLargeur();
-        int hauteur=salle.getEtage().getHauteur();
-        return salle.getX()>=0 && salle.getX()<largeur && salle.getY()>=0 && salle.getY()<hauteur; 
-        
-    }
     
     /**
      * Retourne la liste  de toutes les salles voisines à la salle passé en paramètre .
@@ -85,9 +75,7 @@ public class Salle implements ISalle{
     public ArrayList<Salle> voisines() {
         ArrayList<Salle> voisines = new ArrayList<>();
         for (EDirection dir : EDirection.values()) {
-            if (estDansEtage(suivante(this,dir))) {
-                voisines.add(suivante(this,dir));
-            }         
+                voisines.add(suivante(dir));       
         }
         if (this.getType().equals(ESalle.ESCALIER_MONTANT)) {
             voisines.add(new Salle(this.getX(),this.getY(),ESalle.ESCALIER_DESCENDANT,new Etage(this.getEtage().getNum()+1)));
@@ -103,9 +91,10 @@ public class Salle implements ISalle{
       * @param d la direction
       * @return la salle adjacente à la salle passé en paramètre en fonction de la direction
       */
-    private Salle suivante(ISalle salle, EDirection d) {
-        return new Salle(salle.getX() + EDirection.mvtVertic(d), 
-                salle.getY() + EDirection.mvtHoriz(d),ESalle.NORMALE, etage);
+    public Salle suivante( EDirection d) {
+        System.out.println(""+EDirection.mvtVertic(d)+" "+ EDirection.mvtHoriz(d));
+        return new Salle(this.getX() +EDirection.mvtHoriz(d) , 
+                this.getY() + EDirection.mvtVertic(d),ESalle.NORMALE, etage);
     }
     
     @Override
