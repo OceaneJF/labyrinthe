@@ -35,6 +35,7 @@ public class Dessin extends Canvas {
     private Image escalierD;
     private Image entreeImg;
     private Image sortieImg;
+    private Image salleImg;
     private int tailleLinkH = 6;
     private int tailleLinkL = 2;
 
@@ -59,8 +60,9 @@ public class Dessin extends Canvas {
         solImage = new Image("file:icons/pyramide.png");
         escalierM = new Image("file:icons/up.gif");
         escalierD = new Image("file:icons/down.gif");
-        entreeImg = new Image("file:icons/mur0.gif");
+        entreeImg = new Image("file:icons/groundP.gif");
         sortieImg = new Image("file:icons/sortie.gif");
+        salleImg=new Image("file:icons/ground.gif");
     }
 
     public void dessinFond() {
@@ -83,12 +85,15 @@ public class Dessin extends Canvas {
                 break;
                   case ESCALIER_DESCENDANT:
                            tampon.drawImage(escalierD,s.getX()*largeur, s.getY()*hauteur , unite,unite);
+                          
                 break;
                 case ESCALIER_MONTANT:
                            tampon.drawImage(escalierM, s.getX()*largeur, s.getY()*hauteur , unite,unite);
+                           
                 break;
                 case NORMALE:
-                         tampon.drawImage(murImage, s.getX()*largeur, s.getY()*hauteur , unite,unite);
+                         tampon.drawImage(entreeImg, s.getX()*largeur, s.getY()*hauteur , unite,unite);
+                          
                 break;
                 case SORTIE:
                      tampon.drawImage(sortieImg, s.getX()*hauteur, s.getY()*largeur, unite,unite);

@@ -41,31 +41,31 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         // salles
         for (String ligne : lignes){
             mots = ligne.split(" ");
-            switch (mots[2]) {
-                case "N":
-                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), NORMALE, this);
+            salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), recupType(mots[2]), this);
                     this.add(salle);
-                    break;
-                case "M":
-                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ESCALIER_MONTANT, this);
-                this.add(salle);
-                break;
-                case "D":
-                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ESCALIER_DESCENDANT, this);
-                    this.add(salle);
-                    break;
-                case "E":
-                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ENTREE, this);
-                    this.add(salle); 
-                    break;
-                case "S":
-                    salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), ESalle.ENTREE, this);
-                    this.add(salle);   
-                    break;
-            }
         }
     }
     
+    /**
+     * Cette méthode permet de récuperer le type d'une salle en fonction de la lettre passé en parametre 
+     * @param mot la lettre correspondant au type de la salle
+     * @return le type de la salle 
+     */
+    private ESalle recupType(String mot ){
+        switch (mot) {
+                case "N":
+                    return ESalle.NORMALE;
+                case "M":
+                    return ESalle.ESCALIER_MONTANT;
+                case "D":
+                    return ESalle.ESCALIER_DESCENDANT;
+                case "E":
+                    return ESalle.ENTREE;
+                case "S":
+                    return ESalle.SORTIE;
+            }
+        return null;
+    }
 
     
     @Override
