@@ -82,17 +82,17 @@ public class Salle implements ISalle{
      * @param salle : la salle dont on veut connaitre les voisines
      * @return  la liste  de toutes les salles voisines à la salle passé en paramètre
      */
-    private ArrayList<Salle> voisines(ISalle salle) {
+    public ArrayList<Salle> voisines() {
         ArrayList<Salle> voisines = new ArrayList<>();
         for (EDirection dir : EDirection.values()) {
-            if (estDansEtage(suivante(salle,dir))) {
-                voisines.add(suivante(salle,dir));
+            if (estDansEtage(suivante(this,dir))) {
+                voisines.add(suivante(this,dir));
             }         
         }
-        if (salle.getType().equals(ESalle.ESCALIER_MONTANT)) {
-            voisines.add(new Salle(salle.getX(),salle.getY(),ESalle.ESCALIER_DESCENDANT,new Etage(salle.getEtage().getNum()+1)));
-        }else if (salle.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
-            voisines.add(new Salle(salle.getX(),salle.getY(),ESalle.ESCALIER_MONTANT,new Etage(salle.getEtage().getNum()-1)));
+        if (this.getType().equals(ESalle.ESCALIER_MONTANT)) {
+            voisines.add(new Salle(this.getX(),this.getY(),ESalle.ESCALIER_DESCENDANT,new Etage(this.getEtage().getNum()+1)));
+        }else if (this.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
+            voisines.add(new Salle(this.getX(),this.getY(),ESalle.ESCALIER_MONTANT,new Etage(this.getEtage().getNum()-1)));
         }
         return voisines;
     }
@@ -110,7 +110,7 @@ public class Salle implements ISalle{
     
     @Override
     public boolean estAdjacente(ISalle autre) {
-        ArrayList<Salle> salleAdjacentes= voisines(this);
+        ArrayList<Salle> salleAdjacentes=this.voisines();
         return salleAdjacentes.contains(autre);
     }
     
