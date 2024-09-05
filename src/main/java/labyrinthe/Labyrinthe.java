@@ -25,7 +25,14 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
-        return this;
+        ISalle position=heros.getPosition();
+        ArrayList<ISalle> sallesAccessibles=new ArrayList<>();
+        for (ISalle s : this) {
+            if (s.estAdjacente(position)) {
+                sallesAccessibles.add(s);
+            }
+        }
+        return sallesAccessibles;
      //   throw new UnsupportedOperationException("Not supported yet."); 
     }
 
