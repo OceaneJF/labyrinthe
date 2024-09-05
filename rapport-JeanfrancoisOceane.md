@@ -35,3 +35,33 @@ Lors de la 4ᵉ séance, j’ai rencontré des difficultés, notamment pour comp
 Par la suite, j’ai eu des difficultés lors de la réalisation de l’exercice 6, car je n’arrivais pas à trouver sous quelle forme devait être écrit le lien permettant d’accéder aux fichiers dans le dossier `etages` dans le constructeur de la classe `Labyrinthe`. Étant chez moi à ce moment-là, je ne pouvais pas demander l’aide d’un professeur. J’ai donc essayé plusieurs solutions jusqu’à ce que cela fonctionne.
 
 Enfin, j’ai eu beaucoup de mal à implémenter la méthode `dessin`. En effet, j’ai dû faire de nombreuses recherches sur internet pour comprendre le fonctionnement de JavaFX, que j’utilisais pour la première fois. Je n’ai donc pas pu finir l’exercice 7 ce soir-là.
+
+## Mercredi 4 septembre 2024:
+
+_( 5ème session: 2h )_
+
+* Ce que j’ai réalisé : 
+
+Lors de la 5ᵉ session, j'ai poursuivi l'exercice 7, mais je n'ai pas eu le temps de le terminer. Comme j'étais bloqué, j'ai optimisé la méthode “charger” de la classe “Étage”. J'ai également aidé Jessica avec les exercices de l'objectif 1. J'ai terminé les exercices 7 et 8 chez moi dans l'après-midi.
+
+
+* Difficultés rencontrées et solutions apportées
+
+Durant cette 5ème session, j'ai rencontré de nombreuses difficultés à réaliser l'exercice 7. En effet, je n'arrivais pas à afficher d'autres types de salles que celles de type NORMALE. J'ai donc essayé de déboguer mon code en ajoutant des println dans plusieurs méthodes et me suis rendu compte que le calcul pour placer les différentes salles aux bonnes coordonnées n'était pas correct. Je n'ai cependant pas réussi à trouver le problème pendant la séance. J'ai donc continué dans l'après-midi et ai finalement trouvé la solution.
+
+J'ai également eu des difficultés lors de l'implémentation des tests de la classe Salle, notamment pour les méthodes "voisines", "suivante" et "estDansPlateaux", qui sont utilisées dans la méthode "estAdjacente". Bien que celles-ci me permettaient d'afficher le labyrinthe (j'ai utilisé la méthode "voisines" pour afficher les murs), elles étaient partiellement incorrectes. En implémentant les tests, je me suis également rendu compte que la méthode "estDansPlateaux" était inutile.
+
+
+## Jeudi  5 septembre 2024:
+
+_( 6ème, 7ème et 8ème session: 6h )_
+
+
+* Ce que j’ai réalisé : 
+
+Lors de la 6e séance, j'ai ajouté plusieurs cas de tests dans la classe _SalleTest_ après avoir constaté qu'il en manquait. J'ai également aidé Tim et Caroline avec l'affichage du labyrinthe et pour l'exercice 8. Lors des 7e et 8e séances, j'ai codée l'exercice 9 et une partie de l'exercice 10, tout en aidant Tim, Caroline et Jessica pour les tests unitaires. J'ai ensuite continué à coder chez moi le soir et j'ai réalisé les exercices 11, 12, 13 et 14.
+
+
+* Difficultés rencontrées et solutions apportées
+
+Je n’ai pas rencontré de difficultés particulières lors de la 6ème séance. Cependant, j'ai eu quelques problèmes lors des séances suivantes. En effet, je me suis rendu compte trop tard (après avoir commit) que je n'avais pas bien compris l’exercice 9. C’est en réalisant l’exercice 10 que je m’en suis aperçu et que j’ai pu le corriger. Je suis également resté bloqué un moment sur l’exercice 10, car je ne savais pas comment ajouter une salle à un étage en utilisant la méthode "add" de Java, au lieu de celle que j’étais en train de coder. J’ai finalement trouvé la solution après quelques recherches sur internet et en consultant mes cours du S2. J’ai aussi eu du mal à comprendre les consignes des exercices 13 et 14. Étant chez moi, je n’ai pas pu demander de l’aide à un professeur.
