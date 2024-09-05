@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import static labyrinthe.ESalle.NORMALE;
 
@@ -82,6 +83,24 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     public int getNum() {
         return num;
     }
-    
+        private boolean estDansPlateau(Salle salle){
+        int largeur=salle.getEtage().getLargeur();
+        int hauteur=salle.getEtage().getHauteur();
+        return salle.getX()>0 && salle.getX()<largeur && salle.getY()>0 && salle.getY()<hauteur;     
+    }
 
-}
+    @Override
+    public boolean add(ISalle s) {
+        Salle salle= new Salle(s.getX(),s.getY(), ESalle.NORMALE, this);
+       if (!this.contains(salle)) {
+            if (estDansPlateau(salle)) {
+                return this.add(salle);
+            }
+        }
+        return false;
+    }
+
+   
+    
+    }
+

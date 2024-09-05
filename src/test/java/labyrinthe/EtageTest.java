@@ -21,43 +21,84 @@ import static org.junit.Assert.*;
 public class EtageTest {
     
     private static Etage etage;
+    private static Salle salle1;
+    private static Salle salle2;
+    private static Salle salle3;
+    private static Salle salle4;
+    private static Salle salle5;
+    private static ArrayList<Salle> expected;
+    
     
     @BeforeClass
     public static void setUpClass() {
     etage= new Etage();
+    salle1=new Salle(1, 3, ESalle.NORMALE, etage);
+    salle2=new Salle(2, 9, ESalle.NORMALE, etage);
+    salle3=new Salle(1, 3, ESalle.NORMALE, etage);
+    salle4=new Salle(0, 3, ESalle.NORMALE, etage);
+    salle5=new Salle(1, 40, ESalle.NORMALE, etage);
+    expected=new ArrayList<>();
+    
             }
     
-    
-    private boolean estDansPlateau(Salle salle){
-        int largeur=salle.getEtage().getLargeur();
-        int hauteur=salle.getEtage().getHauteur();
-        return salle.getX()>0 && salle.getX()<largeur && salle.getY()>0 && salle.getY()<hauteur;     
+    @After
+    public void tearDown() {
+         etage= new Etage();
+    salle1=new Salle(1, 3, ESalle.NORMALE, etage);
+    salle2=new Salle(2, 9, ESalle.NORMALE, etage);
+    salle3=new Salle(1, 3, ESalle.NORMALE, etage);
+    salle4=new Salle(0, 3, ESalle.NORMALE, etage);
+    salle5=new Salle(1, 40, ESalle.NORMALE, etage);
+    expected=new ArrayList<>();
     }
+    
+    
 
     
     
     @Test
-    public void testValide() throws IOException{
-        //Les fichiers qui font échouer le test sont :
-//        at java.base/java.util.Objects.hashCode(Objects.java:103)
-//	at com.iutbx.projetlaby/labyrinthe.Salle.hashCode(Salle.java:137)
-//	at java.base/java.util.ArrayList.hashCodeRange(ArrayList.java:677)
-//	at java.base/java.util.ArrayList.hashCode(ArrayList.java:664)
-//	at java.base/java.util.Objects.hashCode(Objects.java:103)
-        etage.charger("etages/etage1N.txt");
-        boolean estValide =true;
-         HashSet<Salle> h = new HashSet<>();
-       Salle sn;
-        for (ISalle s : etage) {
-           sn= new Salle(s.getX(), s.getY(),s.getType(), s.getEtage());
-           if(!estDansPlateau(sn)){
-               estValide=false;
-           }
-           h.add(sn);
-        }
-        //Si le hashet est plus petit que la arraylist alors il y avait des classes en double dans l'étage 
-        //Le test passe si l'étage n'a pas de salle en double et les coordonnées de touttes les salles sont dans le plateau 
-        assertTrue(h.size()==etage.size() && estValide);
+    public void testAdd() throws IOException{
+        etage.add(salle1);
+        etage.add(salle2);
+        expected.add(salle1);
+        expected.add(salle2);
+        //cas ou le labyrinth est valide 
+        assertArrayEquals(expected.toArray(), etage.toArray());
+        //cas ou le labyrinth est pas valide car une salle est en double 
+        etage.add(salle3);
+         assertArrayEquals(expected.toArray(), etage.toArray());
+        //cas ou le labyrinth n'est pas valide car une salle et en dehors du plateau 
+          etage.add(salle4);
+          assertArrayEquals(expected.toArray(), etage.toArray());
+        //cas ou le labyrinth n'est pas valide car une salle et en dehors du plateau 
+        etage.add(salle5);
+          assertArrayEquals(expected.toArray(), etage.toArray());
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+       
+        
+        
+        
 
     }
 }
