@@ -6,11 +6,7 @@ package labyrinthe;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -51,10 +47,6 @@ public class EtageTest {
     salle5=new Salle(1, 40, ESalle.NORMALE, etage);
     expected=new ArrayList<>();
     }
-    
-    
-
-    
     
     @Test
     public void testAdd() throws IOException{
