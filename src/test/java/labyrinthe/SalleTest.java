@@ -232,4 +232,6 @@ public class SalleTest {
           assertFalse(salle1.hashCode()==salle2.hashCode());
     }
     
+    
+    
 }
