@@ -69,7 +69,6 @@ public class Salle implements ISalle{
     /**
      * Retourne la liste  de toutes les salles voisines à la salle passé en paramètre .
      * 
-     * @param salle : la salle dont on veut connaitre les voisines
      * @return  la liste  de toutes les salles voisines à la salle passé en paramètre
      */
     public ArrayList<Salle> voisines() {
@@ -87,12 +86,10 @@ public class Salle implements ISalle{
 
      /**
       * Cette méthode retourne la salle adjacente à la salle passé en paramètre en fonction de la direction
-      * @param salle la salle 
       * @param d la direction
       * @return la salle adjacente à la salle passé en paramètre en fonction de la direction
       */
     public Salle suivante( EDirection d) {
-        System.out.println(""+EDirection.mvtVertic(d)+" "+ EDirection.mvtHoriz(d));
         return new Salle(this.getX() +EDirection.mvtHoriz(d) , 
                 this.getY() + EDirection.mvtVertic(d),ESalle.NORMALE, etage);
     }

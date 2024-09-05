@@ -59,7 +59,7 @@ public class Dessin extends Canvas {
 
     public void chargementImages() {
         murImage = new Image("file:icons/mur0.gif");
-        solImage = new Image("file:icons/pyramide.jpg");
+        solImage = new Image("file:icons/ground.gif");
         escalierM = new Image("file:icons/up.gif");
         escalierD = new Image("file:icons/down.gif");
         entreeImg = new Image("file:icons/groundP.gif");

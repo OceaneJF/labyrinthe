@@ -17,7 +17,7 @@ Lors de cette première session, j’ai préparé mon environnement de travail. 
 
 J’ai rencontré de nombreuses difficultés lors de la préparation de l’environnement. En effet, l’interface graphique de NetBeans spécifique à la gestion de Git (pour initialiser un dépôt Git local, faire des *git push* et des *git clone*) ne fonctionnait pas. J’ai donc demandé de l’aide à l’un de mes camarades, qui m’a montré une autre façon de faire avec les commandes du terminal. J’ai également eu quelques difficultés lors de la réalisation des diagrammes de spécifications générales, notamment lors de la représentation des collections. J’ai donc fait des recherches personnelles dans mes cours du S2 afin de me débloquer.
 
-## Lundi 3 septembre 2024:
+## Mardi 3 septembre 2024:
 
 _( 2ème, 3ème et 4ème session: 6h )_
 
