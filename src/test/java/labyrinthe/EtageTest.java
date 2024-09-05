@@ -27,6 +27,15 @@ public class EtageTest {
     etage= new Etage();
             }
     
+    
+    private boolean estDansPlateau(Salle salle){
+        int largeur=salle.getEtage().getLargeur();
+        int hauteur=salle.getEtage().getHauteur();
+        return salle.getX()>0 && salle.getX()<largeur && salle.getY()>0 && salle.getY()<hauteur;     
+    }
+
+    
+    
     @Test
     public void testValide() throws IOException{
         //Les fichiers qui font échouer le test sont :
@@ -36,29 +45,19 @@ public class EtageTest {
 //	at java.base/java.util.ArrayList.hashCode(ArrayList.java:664)
 //	at java.base/java.util.Objects.hashCode(Objects.java:103)
         etage.charger("etages/etage1N.txt");
-         HashSet<ISalle> h = new HashSet<>();
-       //Salle s;
+        boolean estValide =true;
+         HashSet<Salle> h = new HashSet<>();
+       Salle sn;
         for (ISalle s : etage) {
-          // s= new Salle(sa.getX(), sa.getY(),sa.getType(), sa.getEtage());
-           h.add(s);
+           sn= new Salle(s.getX(), s.getY(),s.getType(), s.getEtage());
+           if(!estDansPlateau(sn)){
+               estValide=false;
+           }
+           h.add(sn);
         }
-        assertTrue(h.size()==etage.size());
-
-//        ArrayList<Integer> a= new ArrayList<>();
-//        a.add(1);
-//        a.add(2);
-//        a.add(3);
-//        a.add(3);
-//        HashSet<Integer> h = new HashSet<>();
-//        for (Integer num : a) {
-//            h.add(num);
-//        }
-//        System.out.println(a.size());
-//        System.out.println(h.size());
-
-       
-      
-
+        //Si le hashet est plus petit que la arraylist alors il y avait des classes en double dans l'étage 
+        //Le test passe si l'étage n'a pas de salle en double et les coordonnées de touttes les salles sont dans le plateau 
+        assertTrue(h.size()==etage.size() && estValide);
 
     }
 }
