@@ -13,7 +13,7 @@ import labyrinthe.ISalle;
  */
 public abstract class APersonnage implements IPersonnage{
 
-  ISalle position;
+ private  ISalle position;
 
     public APersonnage(ISalle position) {
         this.position = position;
