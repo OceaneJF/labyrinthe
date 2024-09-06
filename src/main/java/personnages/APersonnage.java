@@ -29,9 +29,5 @@ public abstract class APersonnage implements IPersonnage{
         this.position = position;
     }
 
-    @Override
-    public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
 }

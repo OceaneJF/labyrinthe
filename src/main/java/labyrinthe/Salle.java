@@ -134,7 +134,7 @@ public class Salle implements ISalle{
         int hash = 7;
         hash = 79 * hash + this.x;
         hash = 79 * hash + this.y;
-        hash = 79 * hash + Objects.hashCode(this.etage);
+        hash = 79 * hash + this.etage.getNum();
         return hash;
     }
     
