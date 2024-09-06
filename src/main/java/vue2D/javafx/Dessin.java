@@ -50,7 +50,7 @@ public class Dessin extends Canvas {
         largeur = labyrinthe.getEtageCourant().getLargeur();
         hauteur = labyrinthe.getEtageCourant().getHauteur();
         setWidth(largeur * unite);
-        System.out.println(largeur * unite+" / "+hauteur * unite);
+        System.out.println(largeur * unite + " / " + hauteur * unite);
         setHeight(hauteur * unite);
         tampon = this.getGraphicsContext2D();
         chargementImages();
@@ -64,40 +64,40 @@ public class Dessin extends Canvas {
         escalierD = new Image("file:icons/down.gif");
         entreeImg = new Image("file:icons/groundP.gif");
         sortieImg = new Image("file:icons/sortie.gif");
-        salleImg=new Image("file:icons/ground.gif");
+        salleImg = new Image("file:icons/ground.gif");
     }
 
     public void dessinFond() {
         tampon.drawImage(solImage, 0, 0, unite * largeur,
                 unite * hauteur);
     }
-    
+
     /**
-     * Cette méthode permet de dessiner tous les murs d'un étage 
+     * Cette méthode permet de dessiner tous les murs d'un étage
+     *
      * @param etage l'étage
      */
-    public void dessinMurs(IEtage etage){
-        ArrayList<Salle> voisines ;
+    public void dessinMurs(IEtage etage) {
+        ArrayList<Salle> voisines;
         for (ISalle iS : etage) {
-            Salle s = new Salle(iS.getX(),iS.getY(),iS.getType(),iS.getEtage());
-            voisines= s.voisines();
+            Salle s = new Salle(iS.getX(), iS.getY(), iS.getType(), iS.getEtage());
+            voisines = s.voisines();
             for (Salle v : voisines) {
                 if (!etage.contains(v)) {
-                     tampon.drawImage(murImage,v.getX()*unite, v.getY()*unite , unite,unite);
+                    tampon.drawImage(murImage, v.getX() * unite, v.getY() * unite, unite, unite);
                 }
             }
         }
     }
 
-     public void dessinSprites() {
+    public void dessinSprites() {
         for (ISprite s : sprites) {
-            if (s.getPosition().getEtage().getNum()==labyrinthe.getEtageCourant().getNum()) {
-                 s.dessiner(tampon);
+            if (s.getPosition().getEtage().getNum() == labyrinthe.getEtageCourant().getNum()) {
+                s.dessiner(tampon);
             }
-           
         }
     }
-    
+
     public void dessinSalles(IEtage etage) {
         for (ISalle s : etage) {
             Color c = Color.rgb(200, 200, 200);
@@ -106,27 +106,28 @@ public class Dessin extends Canvas {
     }
 
     public void dessinSalle(ISalle s, Color c) {
-          tampon.drawImage(image(s),s.getX()*unite, s.getY()*unite , unite,unite);
+        tampon.drawImage(image(s), s.getX() * unite, s.getY() * unite, unite, unite);
 
     }
-    
+
     /**
      * Cette méthode retourne l'image correspondant au type de Salle
+     *
      * @param s la salle
      * @return l'image correspondante
      */
-    private Image image(ISalle s){
+    private Image image(ISalle s) {
         switch (s.getType()) {
             case ENTREE:
-                        return entreeImg;
-                  case ESCALIER_DESCENDANT:
-                          return escalierD;
-                case ESCALIER_MONTANT:
-                           return escalierM;
-                case NORMALE:
-                         return salleImg;
-                case SORTIE:
-                     return sortieImg;
+                return entreeImg;
+            case ESCALIER_DESCENDANT:
+                return escalierD;
+            case ESCALIER_MONTANT:
+                return escalierM;
+            case NORMALE:
+                return salleImg;
+            case SORTIE:
+                return sortieImg;
             default:
                 throw new AssertionError();
         }

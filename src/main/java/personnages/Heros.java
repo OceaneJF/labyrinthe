@@ -27,13 +27,13 @@ public class Heros extends APersonnage {
     public void setSalleChoisie(ISalle salleChoisie) {
         this.salleChoisie = salleChoisie;
     }
-    
+
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        if(sallesAccessibles.contains(salleChoisie)) {
+        if (sallesAccessibles.contains(salleChoisie)) {
             return salleChoisie;
         }
         return super.getPosition();
     }
-    
+
 }

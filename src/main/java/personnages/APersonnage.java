@@ -11,23 +11,22 @@ import labyrinthe.ISalle;
  *
  * @author ojfrancois
  */
-public abstract class APersonnage implements IPersonnage{
+public abstract class APersonnage implements IPersonnage {
 
- private  ISalle position;
+    private ISalle position;
 
     public APersonnage(ISalle position) {
         this.position = position;
     }
-    
+
     @Override
-      public ISalle getPosition() {
+    public ISalle getPosition() {
         return position;
     }
-      
+
     @Override
     public void setPosition(ISalle position) {
         this.position = position;
     }
 
-    
 }

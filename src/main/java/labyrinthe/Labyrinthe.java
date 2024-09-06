@@ -10,35 +10,34 @@ import personnages.IPersonnage;
  */
 public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
-    
     private IEtage etageCourant = new Etage();
-    
-       public Labyrinthe() {
-           try {
-               etageCourant.charger("etages/etage1N.txt");
-                Etage etage2=new Etage();
-                etage2.charger("etages/etage2N.txt");
-           } catch (Exception e) {
-               System.out.println(e.getMessage());
-           }
+
+    public Labyrinthe() {
+        try {
+            etageCourant.charger("etages/etage1N.txt");
+            Etage etage2 = new Etage();
+            etage2.charger("etages/etage2N.txt");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
-        ISalle position=heros.getPosition();
-        ArrayList<ISalle> sallesAccessibles=new ArrayList<>();
-        for (ISalle s : this) {
+        ISalle position = heros.getPosition();
+        ArrayList<ISalle> sallesAccessibles = new ArrayList<>();
+        for (ISalle s : etageCourant) {
             if (s.estAdjacente(position)) {
                 sallesAccessibles.add(s);
             }
         }
         return sallesAccessibles;
-     //   throw new UnsupportedOperationException("Not supported yet."); 
+        //   throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public ISalle getEntree() {
-        for (ISalle salle : this) {
+        for (ISalle salle : etageCourant) {
             if (salle.getType().equals(ESalle.ENTREE)) {
                 return salle;
             }
@@ -48,12 +47,12 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public ISalle getSortie() {
-        for (ISalle salle : this) {
+        for (ISalle salle : etageCourant) {
             if (salle.getType().equals(ESalle.SORTIE)) {
                 return salle;
             }
         }
-        return null;   
+        return null;
     }
 
     @Override
@@ -70,5 +69,5 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Collection<ISalle> chemin(ISalle u, ISalle v) {
         return null;
     }
-    
+
 }

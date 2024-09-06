@@ -23,73 +23,68 @@ import personnages.IPersonnage;
  *
  * @author ojfrancois
  */
-public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
-     
+public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
+
     private Heros heros;
     private ILabyrinthe labyrinthe;
-    
 
     public HerosSprite(Heros h, ILabyrinthe lab) {
         super(h);
         this.heros = h;
         this.labyrinthe = lab;
-        super.setImage(new Image ("file : icons/link/LinkRunShieldL1.gif") );
-        
+        super.setImage(new Image("file:icons/link/LinkRunShieldL1.gif"));
+
     }
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-       return heros.faitSonChoix(sallesAccessibles);
+        return heros.faitSonChoix(sallesAccessibles);
     }
 
     @Override
     public ISalle getPosition() {
-       return heros.getPosition();
+        return heros.getPosition();
     }
 
     @Override
     public void setPosition(ISalle s) {
-         heros.setPosition(s);
+        heros.setPosition(s);
     }
 
     @Override
     public void handle(KeyEvent t) {
-       KeyCode code= t.getCode();
-       EDirection d=null;
-       int MD=0;
+        KeyCode code = t.getCode();
+        EDirection d = null;
+        int MD = 0;
         switch (code) {
             case LEFT:
-                d=EDirection.OUEST;
+                d = EDirection.OUEST;
                 break;
             case RIGHT:
-                d=EDirection.EST;
+                d = EDirection.EST;
                 break;
             case UP:
-                d=EDirection.NORD;
+                d = EDirection.NORD;
                 break;
             case DOWN:
-                d=EDirection.SUD;
+                d = EDirection.SUD;
                 break;
             case M:
-                MD=1;
+                MD = 1;
                 break;
             case D:
-                MD=-1;
+                MD = -1;
                 break;
-            default:
-                throw new AssertionError();
         }
-        ISalle positionActuelle=heros.getPosition();
-        Salle s= new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(),new Etage(positionActuelle.getEtage().getNum()+MD) );
-        Salle suivante=null;
-        if(d!=null) {
-            suivante= s.suivante(d);
-        }else{
-            suivante=s;
+        ISalle positionActuelle = heros.getPosition();
+        Salle s = new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(), new Etage(positionActuelle.getEtage().getNum() + MD));
+        Salle suivante = null;
+        if (d != null) {
+            suivante = s.suivante(d);
+        } else {
+            suivante = s;
         }
         heros.setSalleChoisie(suivante);
     }
 
-    
-    
 }

@@ -4,10 +4,8 @@
  */
 package vue2D.sprites;
 
-import java.util.Collection;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import labyrinthe.ISalle;
 import personnages.IPersonnage;
 import static vue2D.AVue.UNITE;
 
@@ -16,24 +14,17 @@ import static vue2D.AVue.UNITE;
  * @author ojfrancois
  */
 public abstract class ASprite implements ISprite {
-  
+
     private IPersonnage perso;
-    private int xpix ;
-    private int ypix ;
+    private int xpix;
+    private int ypix;
     private Image image;
 
     public ASprite(IPersonnage perso) {
         this.perso = perso;
     }
 
-//    public ASprite(IPersonnage perso, int xpix, int ypix, Image image) {
-//        this.perso = perso;
-//        this.xpix = xpix;
-//        this.ypix = ypix;
-//        this.image = image;
-//    }
-    
-      public IPersonnage getPerso() {
+    public IPersonnage getPerso() {
         return perso;
     }
 
@@ -48,29 +39,24 @@ public abstract class ASprite implements ISprite {
     public void setImage(Image image) {
         this.image = image;
     }
-    
-        public int getXpix() {
+
+    public int getXpix() {
         return xpix;
     }
 
     public int getYpix() {
         return ypix;
     }
-    
 
     @Override
     public void dessiner(GraphicsContext g) {
-      
-        g.drawImage(image,xpix, ypix , UNITE,UNITE);
-          
+        g.drawImage(image, xpix, ypix, UNITE, UNITE);
     }
 
     @Override
     public void setCoordonnees(int xpix, int ypix) {
         this.xpix = xpix;
-         this.ypix = ypix;
+        this.ypix = ypix;
     }
 
-    
-    
 }
