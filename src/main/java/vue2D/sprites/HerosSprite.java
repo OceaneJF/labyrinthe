@@ -13,6 +13,7 @@ import labyrinthe.EDirection;
 import labyrinthe.ESalle;
 import labyrinthe.Etage;
 import labyrinthe.ISalle;
+import labyrinthe.Labyrinthe;
 import labyrinthe.Salle;
 import personnages.Heros;
 import personnages.IPersonnage;
@@ -22,11 +23,17 @@ import personnages.IPersonnage;
  * @author ojfrancois
  */
 public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
+     
+    private Heros heros;
+    private Labyrinthe labyrinthe;
     
 
-    public HerosSprite(IPersonnage perso) {
-        super(perso);
+    public HerosSprite(Heros h, Labyrinthe lab) {
+        super(h);
+        this.heros = h;
+        this.labyrinthe = lab;
         super.setImage(new Image ("file : icons/link/LinkRunShieldL1.gif") );
+        
     }
 
     @Override
@@ -77,9 +84,8 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
         if(d!=null) {
             suivante= s.suivante(d);
         }
-        super.getPerso().setPosition(suivante);
-       
- 
+//        Heros heros = new Heros(super.getPerso().getPosition());
+        heros.setSalleChoisie(suivante);
     }
 
     

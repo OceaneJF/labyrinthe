@@ -84,15 +84,14 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         return num;
     }
     
-        private boolean estDansPlateau(Salle salle){
-        int largeur=salle.getEtage().getLargeur();
-        int hauteur=salle.getEtage().getHauteur();
-        return salle.getX()>0 && salle.getX()<largeur && salle.getY()>0 && salle.getY()<hauteur;     
+        private boolean estDansPlateau(ISalle salle){
+        int l=salle.getEtage().getLargeur();
+        int h=salle.getEtage().getHauteur();
+        return salle.getX()>0 && salle.getX()<l && salle.getY()>0 && salle.getY()<h;     
     }
 
     @Override
-    public boolean add(ISalle s) {
-        Salle salle= new Salle(s.getX(),s.getY(), ESalle.NORMALE, this);
+    public boolean add(ISalle salle) {
        if (!this.contains(salle)) {
             if (estDansPlateau(salle)) {
                 return super.add(salle);

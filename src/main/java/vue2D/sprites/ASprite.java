@@ -25,6 +25,13 @@ public abstract class ASprite implements ISprite {
     public ASprite(IPersonnage perso) {
         this.perso = perso;
     }
+
+//    public ASprite(IPersonnage perso, int xpix, int ypix, Image image) {
+//        this.perso = perso;
+//        this.xpix = xpix;
+//        this.ypix = ypix;
+//        this.image = image;
+//    }
     
       public IPersonnage getPerso() {
         return perso;

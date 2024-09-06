@@ -6,6 +6,7 @@ package personnages;
 
 import java.util.Collection;
 import labyrinthe.ISalle;
+import vue2D.sprites.HerosSprite;
 
 /**
  *
