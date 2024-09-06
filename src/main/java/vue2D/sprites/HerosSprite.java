@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import labyrinthe.EDirection;
 import labyrinthe.ESalle;
 import labyrinthe.Etage;
+import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
 import labyrinthe.Labyrinthe;
 import labyrinthe.Salle;
@@ -25,10 +26,10 @@ import personnages.IPersonnage;
 public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
      
     private Heros heros;
-    private Labyrinthe labyrinthe;
+    private ILabyrinthe labyrinthe;
     
 
-    public HerosSprite(Heros h, Labyrinthe lab) {
+    public HerosSprite(Heros h, ILabyrinthe lab) {
         super(h);
         this.heros = h;
         this.labyrinthe = lab;
@@ -38,17 +39,17 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return heros.faitSonChoix(sallesAccessibles);
     }
 
     @Override
     public ISalle getPosition() {
-        return null;
+       return heros.getPosition();
     }
 
     @Override
     public void setPosition(ISalle s) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         heros.setPosition(s);
     }
 
     @Override
@@ -78,13 +79,14 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent>{
             default:
                 throw new AssertionError();
         }
-        ISalle positionActuelle=super.getPerso().getPosition();
+        ISalle positionActuelle=heros.getPosition();
         Salle s= new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(),new Etage(positionActuelle.getEtage().getNum()+MD) );
         Salle suivante=null;
         if(d!=null) {
             suivante= s.suivante(d);
+        }else{
+            suivante=s;
         }
-//        Heros heros = new Heros(super.getPerso().getPosition());
         heros.setSalleChoisie(suivante);
     }
 

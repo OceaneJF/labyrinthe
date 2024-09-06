@@ -49,6 +49,14 @@ public abstract class ASprite implements ISprite {
         this.image = image;
     }
     
+        public int getXpix() {
+        return xpix;
+    }
+
+    public int getYpix() {
+        return ypix;
+    }
+    
 
     @Override
     public void dessiner(GraphicsContext g) {
