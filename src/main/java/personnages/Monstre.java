@@ -31,11 +31,14 @@ public class Monstre extends APersonnage {
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        int nbSalleAccessibles = sallesAccessibles.size();
-        Random rand = new Random();
-        int numSalle = rand.nextInt(nbSalleAccessibles);
-        ArrayList<ISalle> array = new ArrayList(sallesAccessibles);
-        return array.get(numSalle);
+        if (sallesAccessibles.size() > 0) {
+            int nbSalleAccessibles = sallesAccessibles.size();
+            Random rand = new Random();
+            int numSalle = rand.nextInt(nbSalleAccessibles);
+            ArrayList<ISalle> array = new ArrayList(sallesAccessibles);
+            return array.get(numSalle);
+        }
+        return super.getPosition();
     }
 
 }

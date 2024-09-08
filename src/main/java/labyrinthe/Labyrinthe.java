@@ -4,6 +4,8 @@ import personnages.IPersonnage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
+import personnages.Heros;
 
 /**
  * @author professor team
@@ -15,7 +17,7 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Labyrinthe() {
         try {
             etageCourant.charger("etages/etage1N.txt");
-            Etage etage2 = new Etage();
+            Etage etage2 = new Etage(2);
             etage2.charger("etages/etage2N.txt");
             this.addAll(etageCourant);
             this.addAll(etage2);
@@ -28,12 +30,31 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
         ISalle position = heros.getPosition();
         ArrayList<ISalle> sallesAccessibles = new ArrayList<>();
-        for (ISalle s : etageCourant) { // étage courant pour ne pas passé a travers les murs.
-            if (s.estAdjacente(position)) {
-                sallesAccessibles.add(s);
+        if (heros instanceof Heros) {
+            for (ISalle s : etageCourant) { // étage courant pour ne pas passé a travers les murs.
+                if (s.estAdjacente(position)) {
+                    sallesAccessibles.add(s);
+                }
             }
+        } else {
+            for (ISalle s : etageCourant) {
+                if (s.estAdjacente(position) && (s.getType() != ESalle.ESCALIER_DESCENDANT && s.getType() != ESalle.ESCALIER_MONTANT)) {
+                    sallesAccessibles.add(s);
+                }
+            }
+
         }
         return sallesAccessibles;
+    }
+
+    public ISalle salleAleatoire() {
+        Random rand = new Random();
+        int numSalle = rand.nextInt(this.size());
+//        ArrayList<ISalle> lab = new Labyrinthe();
+//        for (ISalle s : this) {
+//            lab.add(s);
+//        }
+        return this.get(numSalle);
     }
 
     @Override
@@ -69,5 +90,15 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     @Override
     public Collection<ISalle> chemin(ISalle u, ISalle v) {
         return null;
+    }
+
+    public Etage getEtage(int etageNum) {
+        Etage e = new Etage(etageNum);
+        for (ISalle s : this) {
+            if (s.getEtage().getNum() == etageNum) {
+                e.add(s);
+            }
+        }
+        return e;
     }
 }

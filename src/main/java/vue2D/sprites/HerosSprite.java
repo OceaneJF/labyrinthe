@@ -81,13 +81,10 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
         } else {
             suivante = s.suivante(EDirection.CENTER);
             if (suivante.getType().equals(ESalle.ESCALIER_MONTANT) || suivante.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
-                try {
-                    Etage newEtage = new Etage(etage.getNum());
-                    newEtage.charger(String.format("etages/etage%dN.txt", etage.getNum()));
-                    suivante.setEtage(newEtage);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                Labyrinthe lab = (Labyrinthe) labyrinthe;
+                Etage newEtage = lab.getEtage(etage.getNum());
+                suivante.setEtage(newEtage);
+
             }
         }
         heros.setSalleChoisie(suivante);

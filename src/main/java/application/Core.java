@@ -1,12 +1,17 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import labyrinthe.Labyrinthe;
 import personnages.Heros;
+import personnages.Monstre;
 import vue2D.IVue;
 import vue2D.sprites.HerosSprite;
 import vue2D.sprites.ISprite;
+import vue2D.sprites.MonstreSprite;
 
 /**
  *
@@ -15,6 +20,7 @@ import vue2D.sprites.ISprite;
 public class Core {
 
     ISprite heros;
+    Collection<ISprite> monstres;
     ILabyrinthe labyrinthe;
 
     protected void initLabyrinthe() {
@@ -28,6 +34,14 @@ public class Core {
         this.heros = new HerosSprite(h, labyrinthe);
         vue.add(this.heros);
 
+        Labyrinthe lab = (Labyrinthe) labyrinthe;
+
+        this.monstres = new ArrayList();
+        for (int i = 0; i < 15; i++) {
+            Monstre m = new personnages.Monstre(lab.salleAleatoire());
+            this.monstres.add(new MonstreSprite(m, labyrinthe));
+        }
+        vue.addAll(this.monstres);
     }
 
     protected void jeu(IVue vue) {
