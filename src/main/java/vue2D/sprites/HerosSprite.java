@@ -72,7 +72,7 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
         }
         ISalle positionActuelle = heros.getPosition();
         Etage etage = new Etage(positionActuelle.getEtage().getNum() + MD);
-        etage.addAll(positionActuelle.getEtage()); // COPIER L'étage sinon disparais.
+        etage.addAll(positionActuelle.getEtage());
 
         Salle s = new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(), etage);
         Salle suivante = null;
