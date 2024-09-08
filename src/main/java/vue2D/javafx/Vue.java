@@ -1,19 +1,14 @@
 package vue2D.javafx;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import labyrinthe.ILabyrinthe;
-import labyrinthe.ISalle;
-import personnages.Heros;
-import vue2D.IVue;
 import vue2D.AVue;
+import vue2D.IVue;
 import vue2D.sprites.ISprite;
 
 /**
- *
  * @author INFO Professors team
  */
 public class Vue extends AVue implements IVue {

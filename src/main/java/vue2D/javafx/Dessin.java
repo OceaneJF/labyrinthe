@@ -1,21 +1,20 @@
 package vue2D.javafx;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import labyrinthe.ESalle;
+import labyrinthe.IEtage;
 import labyrinthe.ILabyrinthe;
 import labyrinthe.ISalle;
+import labyrinthe.Salle;
 import vue2D.AVue;
 import vue2D.sprites.ISprite;
-import labyrinthe.IEtage;
-import labyrinthe.Salle;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
- *
  * @author INFO Professors team
  */
 public class Dessin extends Canvas {
@@ -94,6 +93,7 @@ public class Dessin extends Canvas {
         for (ISprite s : sprites) {
             if (s.getPosition().getEtage().getNum() == labyrinthe.getEtageCourant().getNum()) {
                 s.dessiner(tampon);
+                s.setCoordonnees(s.getPosition().getX() * unite, s.getPosition().getY() * unite); // FAIS BOUGER LE PERSO
             }
         }
     }

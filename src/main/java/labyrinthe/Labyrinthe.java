@@ -1,11 +1,11 @@
 package labyrinthe;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import personnages.IPersonnage;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
- *
  * @author professor team
  */
 public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
@@ -17,6 +17,8 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
             etageCourant.charger("etages/etage1N.txt");
             Etage etage2 = new Etage();
             etage2.charger("etages/etage2N.txt");
+            this.addAll(etageCourant);
+            this.addAll(etage2);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -26,18 +28,17 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
         ISalle position = heros.getPosition();
         ArrayList<ISalle> sallesAccessibles = new ArrayList<>();
-        for (ISalle s : etageCourant) {
+        for (ISalle s : etageCourant) { // étage courant pour ne pas passé a travers les murs.
             if (s.estAdjacente(position)) {
                 sallesAccessibles.add(s);
             }
         }
         return sallesAccessibles;
-        //   throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public ISalle getEntree() {
-        for (ISalle salle : etageCourant) {
+        for (ISalle salle : this) {
             if (salle.getType().equals(ESalle.ENTREE)) {
                 return salle;
             }
@@ -47,7 +48,7 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     @Override
     public ISalle getSortie() {
-        for (ISalle salle : etageCourant) {
+        for (ISalle salle : this) {
             if (salle.getType().equals(ESalle.SORTIE)) {
                 return salle;
             }
@@ -69,5 +70,4 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Collection<ISalle> chemin(ISalle u, ISalle v) {
         return null;
     }
-
 }

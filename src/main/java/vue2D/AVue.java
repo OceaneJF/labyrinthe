@@ -1,12 +1,11 @@
 package vue2D;
 
-import java.util.ArrayList;
-
 import labyrinthe.ISalle;
 import vue2D.sprites.ISprite;
 
+import java.util.ArrayList;
+
 /**
- *
  * @author INFO Professors team
  */
 public abstract class AVue extends ArrayList<ISprite> implements IVue {
@@ -17,6 +16,7 @@ public abstract class AVue extends ArrayList<ISprite> implements IVue {
     public boolean add(ISprite sprite) {
         super.add(sprite);
         ISalle s = sprite.getPosition();
+        System.out.println(s.getEtage().getNum());
         sprite.setCoordonnees(s.getX() * UNITE, s.getY() * UNITE);
         return true;
     }

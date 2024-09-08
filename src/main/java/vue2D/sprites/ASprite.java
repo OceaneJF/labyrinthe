@@ -7,10 +7,10 @@ package vue2D.sprites;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import personnages.IPersonnage;
+
 import static vue2D.AVue.UNITE;
 
 /**
- *
  * @author ojfrancois
  */
 public abstract class ASprite implements ISprite {

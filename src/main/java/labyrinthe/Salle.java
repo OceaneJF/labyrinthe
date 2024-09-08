@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- *
  * @author ojfrancois
  */
-public class Salle implements ISalle{
+public class Salle implements ISalle {
+
     // Coordonnée x de la salle
     private int x;
     //Coordonnée y de la salle 
@@ -20,15 +20,14 @@ public class Salle implements ISalle{
     private ESalle type;
     //Etage ou se trouve la salle 
     private IEtage etage;
-    
+
     public Salle(int x, int y, ESalle type, IEtage etage) {
         this.x = x;
         this.y = y;
         this.type = type;
         this.etage = etage;
     }
-    
-    
+
     public void setX(int x) {
         this.x = x;
     }
@@ -52,7 +51,7 @@ public class Salle implements ISalle{
 
     @Override
     public int getY() {
-       return y;
+        return y;
     }
 
     @Override
@@ -64,44 +63,66 @@ public class Salle implements ISalle{
     public IEtage getEtage() {
         return etage;
     }
-    
-    
+
     /**
-     * Retourne la liste  de toutes les salles voisines à la salle passé en paramètre .
-     * 
-     * @return  la liste  de toutes les salles voisines à la salle passé en paramètre
+     * Retourne la liste de toutes les salles voisines à la salle passé en
+     * paramètre .
+     *
+     * @return la liste de toutes les salles voisines à la salle passé en
+     * paramètre
      */
     public ArrayList<Salle> voisines() {
         ArrayList<Salle> voisines = new ArrayList<>();
+
         for (EDirection dir : EDirection.values()) {
-                voisines.add(suivante(dir));       
+            if (!dir.equals(EDirection.CENTER)) {
+                voisines.add(suivante(dir));
+            }
         }
+
         if (this.getType().equals(ESalle.ESCALIER_MONTANT)) {
-            voisines.add(new Salle(this.getX(),this.getY(),ESalle.ESCALIER_DESCENDANT,new Etage(this.getEtage().getNum()+1)));
-        }else if (this.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
-            voisines.add(new Salle(this.getX(),this.getY(),ESalle.ESCALIER_MONTANT,new Etage(this.getEtage().getNum()-1)));
+            voisines.add(suivante(EDirection.CENTER));
+        } else if (this.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
+            voisines.add(suivante(EDirection.CENTER));
         }
+
         return voisines;
     }
 
-     /**
-      * Cette méthode retourne la salle adjacente à la salle passé en paramètre en fonction de la direction
-      * @param d la direction
-      * @return la salle adjacente à la salle passé en paramètre en fonction de la direction
-      */
-    public Salle suivante( EDirection d) {
-        return new Salle(this.getX() +EDirection.mvtHoriz(d) , 
-                this.getY() + EDirection.mvtVertic(d),ESalle.NORMALE, etage);
+    /**
+     * Cette méthode retourne la salle adjacente à la salle passé en paramètre
+     * en fonction de la direction
+     *
+     * @param d la direction
+     * @return la salle adjacente à la salle passé en paramètre en fonction de
+     * la direction
+     */
+    public Salle suivante(EDirection d) {
+        int x = this.getX() + EDirection.mvtHoriz(d);
+        int y = this.getY() + EDirection.mvtVertic(d);
+        Salle nextSalle = new Salle(this.getX() + EDirection.mvtHoriz(d),
+                this.getY() + EDirection.mvtVertic(d), ESalle.NORMALE, etage);
+
+        for (ISalle salle : etage) {
+            if (x == salle.getX() && y == salle.getY()) {
+                nextSalle = (Salle) salle;
+            }
+        }
+
+        return nextSalle;
     }
-    
+
     @Override
     public boolean estAdjacente(ISalle autre) {
-        ArrayList<Salle> salleAdjacentes=this.voisines();
-        return salleAdjacentes.contains(autre);
+        Salle salle = (Salle) autre;
+        ArrayList<Salle> salleAdjacentes = salle.voisines();
+        return salleAdjacentes.contains(this);
     }
-    
+
     /**
-     * Deux salle sont identique si elles on les memes coordonnées et le meme étage 
+     * Deux salle sont identique si elles on les memes coordonnées et le meme
+     * étage
+     *
      * @param obj l'objet que l'on veut comparer
      * @return true si les salle sont identiques , false sinon
      */
@@ -123,12 +144,16 @@ public class Salle implements ISalle{
         if (this.y != other.y) {
             return false;
         }
+
         return Objects.equals(this.etage, other.etage);
     }
-/**
- * Deux salle sont identique si elles on les memes coordonnées et le meme étage 
- * @return le hashCode
- */
+
+    /**
+     * Deux salle sont identique si elles on les memes coordonnées et le meme
+     * étage
+     *
+     * @return le hashCode
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -137,5 +162,5 @@ public class Salle implements ISalle{
         hash = 79 * hash + this.etage.getNum();
         return hash;
     }
-    
+
 }

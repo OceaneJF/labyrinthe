@@ -4,12 +4,11 @@
  */
 package personnages;
 
-import java.util.Collection;
 import labyrinthe.ISalle;
-import vue2D.sprites.HerosSprite;
+
+import java.util.Collection;
 
 /**
- *
  * @author ojfrancois
  */
 public class Heros extends APersonnage {
@@ -30,8 +29,10 @@ public class Heros extends APersonnage {
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        if (sallesAccessibles.contains(salleChoisie)) {
-            return salleChoisie;
+        if (salleChoisie != null) {
+            if (sallesAccessibles.contains(salleChoisie)) {
+                return salleChoisie;
+            }
         }
         return super.getPosition();
     }

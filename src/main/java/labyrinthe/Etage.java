@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.List;
-import static labyrinthe.ESalle.NORMALE;
 
 /**
- *
  * @author INFO Professors team
  */
 public class Etage extends ArrayList<ISalle> implements IEtage {
@@ -17,17 +15,17 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     private int largeur;
     private int hauteur;
     private int num;
-    
-    public Etage(){
+
+    public Etage() {
         largeur = 40;
         hauteur = 40;
         num = 1;
     }
-    
-    public Etage(int id){
+
+    public Etage(int id) {
         this.num = id;
     }
- 
+
     @Override
     public void charger(String file) throws IOException {
         this.clear();
@@ -40,35 +38,36 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         hauteur = Integer.parseInt(mots[1]);
         lignes.remove(0);
         // salles
-        for (String ligne : lignes){
+        for (String ligne : lignes) {
             mots = ligne.split(" ");
-            salle= new Salle(Integer.parseInt(mots[0]),Integer.parseInt(mots[1]), recupType(mots[2]), this);
-                    this.add(salle);
+            salle = new Salle(Integer.parseInt(mots[0]), Integer.parseInt(mots[1]), recupType(mots[2]), this);
+            this.add(salle);
         }
     }
-    
+
     /**
-     * Cette méthode permet de récuperer le type d'une salle en fonction de la lettre passé en parametre 
+     * Cette méthode permet de récuperer le type d'une salle en fonction de la
+     * lettre passé en parametre
+     *
      * @param mot la lettre correspondant au type de la salle
-     * @return le type de la salle 
+     * @return le type de la salle
      */
-    private ESalle recupType(String mot ){
+    private ESalle recupType(String mot) {
         switch (mot) {
-                case "N":
-                    return ESalle.NORMALE;
-                case "M":
-                    return ESalle.ESCALIER_MONTANT;
-                case "D":
-                    return ESalle.ESCALIER_DESCENDANT;
-                case "E":
-                    return ESalle.ENTREE;
-                case "S":
-                    return ESalle.SORTIE;
-            }
+            case "N":
+                return ESalle.NORMALE;
+            case "M":
+                return ESalle.ESCALIER_MONTANT;
+            case "D":
+                return ESalle.ESCALIER_DESCENDANT;
+            case "E":
+                return ESalle.ENTREE;
+            case "S":
+                return ESalle.SORTIE;
+        }
         return null;
     }
 
-    
     @Override
     public int getLargeur() {
         return largeur;
@@ -77,22 +76,22 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     @Override
     public int getHauteur() {
         return hauteur;
-    }  
+    }
 
     @Override
     public int getNum() {
         return num;
     }
-    
-        private boolean estDansPlateau(ISalle salle){
-        int l=salle.getEtage().getLargeur();
-        int h=salle.getEtage().getHauteur();
-        return salle.getX()>0 && salle.getX()<l && salle.getY()>0 && salle.getY()<h;     
+
+    boolean estDansPlateau(ISalle salle) {
+        int l = salle.getEtage().getLargeur();
+        int h = salle.getEtage().getHauteur();
+        return salle.getX() > 0 && salle.getX() < l && salle.getY() > 0 && salle.getY() < h;
     }
 
     @Override
     public boolean add(ISalle salle) {
-       if (!this.contains(salle)) {
+        if (!this.contains(salle)) {
             if (estDansPlateau(salle)) {
                 return super.add(salle);
             }
@@ -100,7 +99,15 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         return false;
     }
 
-   
-    
+    @Override // Surcharge du addAll
+    public boolean addAll(Collection<? extends ISalle> salles) {
+        boolean allAdded = true;
+        for (ISalle salle : salles) {
+            boolean added = this.add(salle);
+            if (!added) {
+                allAdded = false;
+            }
+        }
+        return allAdded;
     }
-
+}

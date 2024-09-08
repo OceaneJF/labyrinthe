@@ -5,15 +5,15 @@
 package labyrinthe;
 
 /**
- *
  * @author ojfrancois
  */
 public enum EDirection {
     NORD,
     SUD,
     EST,
-    OUEST;
-    
+    OUEST,
+    CENTER;
+
     /**
      * Renvoie le nombre de cases parcourues horizontalement lorsqu'on suit
      * cette direction (0 pour Nord et Sud, -1 pour Ouest, 1 pour Est).
@@ -24,6 +24,7 @@ public enum EDirection {
     static int mvtHoriz(EDirection dir) {
         int dh = -2;
         switch (dir) {
+            case CENTER:
             case NORD:
             case SUD:
                 dh = 0;
@@ -37,7 +38,7 @@ public enum EDirection {
         }
         return dh;
     }
-    
+
     /**
      * Renvoie le nombre de cases parcourues verticalement lorsqu'on suit cette
      * direction (0 pour Est et Ouest, -1 pour Nord, 1 pour Sud).
@@ -48,6 +49,7 @@ public enum EDirection {
     static int mvtVertic(EDirection dir) {
         int dv = -2;
         switch (dir) {
+            case CENTER:
             case EST:
             case OUEST:
                 dv = 0;

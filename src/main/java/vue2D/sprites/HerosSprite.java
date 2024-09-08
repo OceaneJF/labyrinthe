@@ -4,23 +4,17 @@
  */
 package vue2D.sprites;
 
-import javafx.scene.input.KeyEvent;
-import java.util.Collection;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import labyrinthe.EDirection;
-import labyrinthe.ESalle;
-import labyrinthe.Etage;
-import labyrinthe.ILabyrinthe;
-import labyrinthe.ISalle;
-import labyrinthe.Labyrinthe;
-import labyrinthe.Salle;
+import javafx.scene.input.KeyEvent;
+import labyrinthe.*;
 import personnages.Heros;
-import personnages.IPersonnage;
+
+import java.io.IOException;
+import java.util.Collection;
 
 /**
- *
  * @author ojfrancois
  */
 public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
@@ -77,12 +71,24 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
                 break;
         }
         ISalle positionActuelle = heros.getPosition();
-        Salle s = new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(), new Etage(positionActuelle.getEtage().getNum() + MD));
+        Etage etage = new Etage(positionActuelle.getEtage().getNum() + MD);
+        etage.addAll(positionActuelle.getEtage()); // COPIER L'étage sinon disparais.
+
+        Salle s = new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(), etage);
         Salle suivante = null;
         if (d != null) {
             suivante = s.suivante(d);
         } else {
-            suivante = s;
+            suivante = s.suivante(EDirection.CENTER);
+            if (suivante.getType().equals(ESalle.ESCALIER_MONTANT) || suivante.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
+                try {
+                    Etage newEtage = new Etage(etage.getNum());
+                    newEtage.charger(String.format("etages/etage%dN.txt", etage.getNum()));
+                    suivante.setEtage(newEtage);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
         heros.setSalleChoisie(suivante);
     }
