@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
@@ -23,7 +24,7 @@ public class Core {
     Collection<ISprite> monstres;
     ILabyrinthe labyrinthe;
 
-    protected void initLabyrinthe() {
+    protected void initLabyrinthe() throws IOException {
         // creation du labyrinthe
         labyrinthe = new labyrinthe.Labyrinthe();
     }

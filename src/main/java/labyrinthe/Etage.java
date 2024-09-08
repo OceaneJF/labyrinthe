@@ -27,7 +27,7 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     }
 
     @Override
-    public void charger(String file) throws IOException {
+    public void charger(String file) throws ExceptionInvalidFile, IOException {
         this.clear();
         List<String> lignes = Files.readAllLines(Paths.get(file));
         Salle salle;
@@ -41,7 +41,11 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         for (String ligne : lignes) {
             mots = ligne.split(" ");
             salle = new Salle(Integer.parseInt(mots[0]), Integer.parseInt(mots[1]), recupType(mots[2]), this);
-            this.add(salle);
+            boolean aAjoute = this.add(salle);
+            if (!aAjoute) {
+                System.out.println(salle.getX() + " " + salle.getY());
+                throw new ExceptionInvalidFile("le fichier est invalide");
+            }
         }
     }
 
@@ -86,7 +90,7 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
     boolean estDansPlateau(ISalle salle) {
         int l = salle.getEtage().getLargeur();
         int h = salle.getEtage().getHauteur();
-        return salle.getX() > 0 && salle.getX() < l && salle.getY() > 0 && salle.getY() < h;
+        return salle.getX() >= 0 && salle.getX() < l && salle.getY() >= 0 && salle.getY() < h;
     }
 
     @Override
@@ -95,19 +99,21 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
             if (estDansPlateau(salle)) {
                 return super.add(salle);
             }
+            System.out.println("pas ds plateau");
         }
+        System.out.println("en double");
         return false;
     }
 
-    @Override // Surcharge du addAll
-    public boolean addAll(Collection<? extends ISalle> salles) {
-        boolean allAdded = true;
-        for (ISalle salle : salles) {
-            boolean added = this.add(salle);
-            if (!added) {
-                allAdded = false;
-            }
-        }
-        return allAdded;
-    }
+//    @Override // Surcharge du addAll
+//    public boolean addAll(Collection<? extends ISalle> salles) {
+//        boolean allAdded = true;
+//        for (ISalle salle : salles) {
+//            boolean added = this.add(salle);
+//            if (!added) {
+//                allAdded = false;
+//            }
+//        }
+//        return allAdded;
+//    }
 }

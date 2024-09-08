@@ -1,5 +1,6 @@
 package labyrinthe;
 
+import java.io.IOException;
 import personnages.IPersonnage;
 
 import java.util.ArrayList;
@@ -15,15 +16,18 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
 
     private IEtage etageCourant = new Etage();
 
-    public Labyrinthe() {
+    public Labyrinthe() throws IOException {
         try {
+            etageCourant.charger("etages/etageInvalide1N.txt");
+            this.addAll(etageCourant);
+        } catch (ExceptionInvalidFile e) {
             etageCourant.charger("etages/etage1N.txt");
             Etage etage2 = new Etage(2);
             etage2.charger("etages/etage2N.txt");
             this.addAll(etageCourant);
             this.addAll(etage2);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
