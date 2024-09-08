@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 import personnages.Heros;
+import vue2D.sprites.HerosSprite;
 
 /**
  * @author professor team
@@ -30,7 +31,7 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public Collection<ISalle> sallesAccessibles(IPersonnage heros) {
         ISalle position = heros.getPosition();
         ArrayList<ISalle> sallesAccessibles = new ArrayList<>();
-        if (heros instanceof Heros) {
+        if (heros instanceof HerosSprite) {
             for (ISalle s : etageCourant) { // étage courant pour ne pas passé a travers les murs.
                 if (s.estAdjacente(position)) {
                     sallesAccessibles.add(s);
