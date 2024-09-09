@@ -27,7 +27,10 @@ public class MonstreSprite extends ASprite {
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        return monstre.faitSonChoix(sallesAccessibles);
+        if (!isEnDeplacement()) {
+            return monstre.faitSonChoix(sallesAccessibles);
+        }
+        return monstre.getPosition();
     }
 
     @Override

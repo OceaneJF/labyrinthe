@@ -77,7 +77,7 @@ public class Core {
                 System.out.println("Plus que " + vue.size() + " personnages ...");
             }
 
-            temporisation(100);
+            temporisation(10);
         }
         System.out.println("Gagné!");
     }

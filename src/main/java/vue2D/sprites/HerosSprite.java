@@ -32,7 +32,10 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
-        return heros.faitSonChoix(sallesAccessibles);
+        if (!isEnDeplacement()) {
+            return heros.faitSonChoix(sallesAccessibles);
+        }
+        return heros.getPosition();
     }
 
     @Override

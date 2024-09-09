@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
 import vue2D.javafx.Vue;
+import vue2D.sprites.ASprite;
+import vue2D.sprites.ISprite;
 
 /**
  * JavaFX MainJavaFX
@@ -30,6 +32,10 @@ public class MainJavaFX extends Application {
             @Override
             public void handle(long l) {
                 vue.dessiner();
+
+                for (ISprite sprite : vue) {
+                    ((ASprite) sprite).updatePosition();
+                }
             }
         };
         timer.start();

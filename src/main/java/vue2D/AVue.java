@@ -17,21 +17,9 @@ public abstract class AVue extends CopyOnWriteArrayList<ISprite> implements IVue
     public boolean add(ISprite sprite) {
         super.add(sprite);
         ISalle s = sprite.getPosition();
-//        for (int i = 1; i < UNITE; i++) {
-//            temporisation(1000);
-            sprite.setCoordonnees(s.getX() * UNITE, s.getY() * UNITE);
-//            this.dessiner();
-//            
-//        }
-        
+        sprite.setCoordonnees(s.getX() * UNITE, s.getY() * UNITE);
+
         return true;
     }
-//    
-//    protected void temporisation(int nb) {
-//        try {
-//            Thread.sleep(nb); // pause de nb millisecondes
-//        } catch (InterruptedException ie) {
-//        }
-//    }
 
 }

@@ -93,7 +93,6 @@ public class Dessin extends Canvas {
         for (ISprite s : sprites) {
             if (s.getPosition().getEtage().getNum() == labyrinthe.getEtageCourant().getNum()) {
                 s.dessiner(tampon);
-                s.setCoordonnees(s.getPosition().getX() * unite, s.getPosition().getY() * unite); // FAIS BOUGER LE PERSO
             }
         }
     }
