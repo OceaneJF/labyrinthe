@@ -65,3 +65,19 @@ Lors de la 6e séance, j'ai ajouté plusieurs cas de tests dans la classe _Salle
 * Difficultés rencontrées et solutions apportées
 
 Je n’ai pas rencontré de difficultés particulières lors de la 6ème séance. Cependant, j'ai eu quelques problèmes lors des séances suivantes. En effet, je me suis rendu compte trop tard (après avoir commit) que je n'avais pas bien compris l’exercice 9. C’est en réalisant l’exercice 10 que je m’en suis aperçu et que j’ai pu le corriger. Je suis également resté bloqué un moment sur l’exercice 10, car je ne savais pas comment ajouter une salle à un étage en utilisant la méthode "add" de Java, au lieu de celle que j’étais en train de coder. J’ai finalement trouvé la solution après quelques recherches sur internet et en consultant mes cours du S2. J’ai aussi eu du mal à comprendre les consignes des exercices 13 et 14. Étant chez moi, je n’ai pas pu demander de l’aide à un professeur.
+
+## Vendredi  6 septembre 2024:
+
+_( 9ème et 10ème session: 4h )_
+
+
+
+* Ce que j’ai réalisé : 
+
+Lors de la 9ᵉ séance, j'ai commencé à coder l'exercice 15, que j'ai terminé lors de la 10ᵉ séance. J'ai aussi débuté l'exercice 16 pendant cette séance, puis poursuivi un peu chez moi le soir. J'ai également réalisé les exercices 17, 18, 19 et 20 durant le week-end.
+
+
+
+* Difficultés rencontrées et solutions apportées
+
+J’ai eu beaucoup de mal à comprendre la consigne de l’exercice 15, ce qui m’a bloqué pendant la première séance. J’ai profité de la deuxième séance pour demander des explications à Monsieur Sopena, ce qui m’a permis de débloquer la situation et d'avancer. Cependant, durant la séance 10, je me suis rendu compte que je ne savais pas comment accéder à l'attribut “salleChoisie” de la classe Héros alors que j'étais dans la classe HeroSprite. J’ai demandé de l’aide à Monsieur Merry, ce qui m’a permis de finir l’exercice 15. J’ai également été bloqué sur l’exercice 16, car je n’arrivais pas à faire bouger le personnage. Étant chez moi sans professeur pour m’aider, j’ai donc arrêté pour la journée. Le lendemain (samedi), j’ai repris et compris que mon problème venait du fait que j’instanciais un étage vide, sans salle. Ainsi, lors de l’appel de setEtageCourant dans Core, la boucle while s’arrêtait. J’ai donc sauvegardé les salles courantes dans l’étage et ajouté la méthode setCoordonnee dans Dessin.sprites() afin de rafraîchir la position des images. Par la suite, j’ai également rencontré un problème : le personnage ne pouvait pas monter ou descendre entre les étages. Cela était dû à un mauvais retour de la méthode “suivante”, qui renvoyait une salle de type Normal au lieu d’une salle de type Escalier. Pour résoudre cela, j’ai modifié l’énumération de Direction et adapté les méthodes concernées. Le lendemain (dimanche), j’ai rencontré un autre problème avec l’exercice 20 : une exception était levée lorsque je chargeais l’étage 2, alors qu'il était censé être valide. En parcourant le fichier de cet étage, je me suis rendu compte qu’il y avait des salles avec des coordonnées x à 0, alors que j’étais persuadé qu’une salle n’était pas valide si ses coordonnées en x étaient inférieures à 1. J’avais codé ma méthode “estDansPlateau” en conséquence. Pour régler le problème, j’ai simplement modifié cette méthode.
