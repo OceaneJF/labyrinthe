@@ -55,10 +55,6 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     public ISalle salleAleatoire() {
         Random rand = new Random();
         int numSalle = rand.nextInt(this.size());
-//        ArrayList<ISalle> lab = new Labyrinthe();
-//        for (ISalle s : this) {
-//            lab.add(s);
-//        }
         return this.get(numSalle);
     }
 

@@ -102,7 +102,6 @@ public class Salle implements ISalle {
         int y = this.getY() + EDirection.mvtVertic(d);
         Salle nextSalle = new Salle(this.getX() + EDirection.mvtHoriz(d),
                 this.getY() + EDirection.mvtVertic(d), ESalle.NORMALE, etage);
-
         for (ISalle salle : etage) {
             if (x == salle.getX() && y == salle.getY()) {
                 nextSalle = (Salle) salle;

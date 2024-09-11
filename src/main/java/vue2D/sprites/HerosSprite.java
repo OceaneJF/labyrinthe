@@ -68,29 +68,25 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
                 break;
             case M:
                 MD = 1;
+                d=EDirection.CENTER;
                 break;
             case D:
                 MD = -1;
+                d=EDirection.CENTER;
                 break;
         }
-        ISalle positionActuelle = heros.getPosition();
-        Etage etage = new Etage(positionActuelle.getEtage().getNum() + MD);
-        etage.addAll(positionActuelle.getEtage());
+        Salle s = (Salle)heros.getPosition();
+        Etage etage = new Etage(s.getEtage().getNum() + MD);
+        etage.addAll(s.getEtage());
 
-        Salle s = new Salle(positionActuelle.getX(), positionActuelle.getY(), positionActuelle.getType(), etage);
-        Salle suivante = null;
-        if (d != null) {
-            suivante = s.suivante(d);
-        } else {
-            suivante = s.suivante(EDirection.CENTER);
+           Salle suivante = s.suivante(d);
             if (suivante.getType().equals(ESalle.ESCALIER_MONTANT) || suivante.getType().equals(ESalle.ESCALIER_DESCENDANT)) {
                 Labyrinthe lab = (Labyrinthe) labyrinthe;
                 Etage newEtage = lab.getEtage(etage.getNum());
                 suivante.setEtage(newEtage);
-
             }
-        }
         heros.setSalleChoisie(suivante);
     }
 
 }
+

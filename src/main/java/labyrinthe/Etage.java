@@ -105,15 +105,4 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         return false;
     }
 
-//    @Override // Surcharge du addAll
-//    public boolean addAll(Collection<? extends ISalle> salles) {
-//        boolean allAdded = true;
-//        for (ISalle salle : salles) {
-//            boolean added = this.add(salle);
-//            if (!added) {
-//                allAdded = false;
-//            }
-//        }
-//        return allAdded;
-//    }
 }
