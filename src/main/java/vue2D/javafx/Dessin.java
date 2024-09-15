@@ -100,47 +100,49 @@ public class Dessin extends Canvas {
     }
 
     public void dessinSalles(IEtage etage) {
-        ISalle sPerso=null;
-        Color c= null;
+        ISalle sPerso = null;
+        Color c = null;
         for (ISprite sp : sprites) {
             if (sp instanceof HerosSprite) {
-                ASprite sh= (ASprite) sp;
-                sPerso=sh.getPerso().getPosition();
+                ASprite sh = (ASprite) sp;
+                sPerso = sh.getPerso().getPosition();
             }
         }
         for (ISalle s : etage) {
-            System.out.println(distance(s,sPerso)); 
-            if (s.equals(sPerso) || distance(s,sPerso)<5 ) {
+            if (s.equals(sPerso) || distance(s, sPerso) < 5) {
                 c = Color.rgb(200, 200, 200);
-            }else if(distance(s,sPerso)<10){
-                 c = Color.rgb(110, 109, 109);
-            }else{
+            } else if (distance(s, sPerso) < 10) {
+                c = Color.rgb(110, 109, 109);
+            } else {
                 c = Color.rgb(64, 64, 64);
             }
             dessinSalle(s, c);
         }
     }
-    
+
     /**
-     * Cette méthode calcule la distance entre deux salle 
-     * @param s1 la premiere salle 
-     * @param s2 la deuxieme salle 
-     * @return un double, la distance ( en valeur absolue) de sdeux salles 
+     * Cette méthode calcule la distance entre deux salle
+     *
+     * @param s1 la premiere salle
+     * @param s2 la deuxieme salle
+     * @return un double, la distance ( en valeur absolue) de sdeux salles
      */
-    public double distance(ISalle s1,ISalle s2){
-        return Math.abs(Math.sqrt(Math.pow(s2.getX()-s1.getX(),2) + Math.pow(s2.getY()-s1.getY(),2)));
+    public double distance(ISalle s1, ISalle s2) {
+        if (s1 == null || s2 == null) {
+            return 0.;
+        }
+        return Math.abs(Math.sqrt(Math.pow(s2.getX() - s1.getX(), 2) + Math.pow(s2.getY() - s1.getY(), 2)));
     }
 
     public void dessinSalle(ISalle s, Color c) {
-        int x=s.getX() * unite;
-        int y=s.getY() * unite;
-        if (image(s)!=null) {
-            tampon.drawImage(image(s),x, y, unite, unite);
-        } else{
+        int x = s.getX() * unite;
+        int y = s.getY() * unite;
+        if (image(s) != null) {
+            tampon.drawImage(image(s), x, y, unite, unite);
+        } else {
             tampon.setFill(c);
             tampon.fillRect(x, y, unite, unite);
         }
-        
 
     }
 

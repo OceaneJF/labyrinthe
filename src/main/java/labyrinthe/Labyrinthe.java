@@ -94,12 +94,17 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
     }
 
     public Etage getEtage(int etageNum) {
-        Etage e = new Etage(etageNum);
-        for (ISalle s : this) {
-            if (s.getEtage().getNum() == etageNum) {
-                e.add(s);
+        Etage e = null;
+        boolean found = false;
+        int i = 0;
+        while (!found || i < this.size()) {
+            if (this.get(i).getEtage().getNum() == etageNum) {
+                e = (Etage) this.get(i).getEtage();
+                found = true;
             }
+            i++;
         }
+
         return e;
     }
 }
