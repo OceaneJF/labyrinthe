@@ -14,21 +14,33 @@ import java.util.Random;
  * @author ojfrancois
  */
 public class Monstre extends APersonnage {
-
+// la salle ou le monstre a choisit d'aller
     private ISalle salleChoisie;
 
     public Monstre(ISalle position) {
         super(position);
     }
 
+    /**
+     * Cette méthode permet de récupérer la salle choisie par le monstre 
+     * @return une salle, la salle choisie par le monstre 
+     */
     public ISalle getSalleChoisie() {
         return salleChoisie;
     }
-
+    /**
+     * Cette méthode permet de modifier la salle choisie par le monstre 
+     * @param salleChoisie , la nouvelle salle choisie 
+     */
     public void setSalleChoisie(ISalle salleChoisie) {
         this.salleChoisie = salleChoisie;
     }
 
+    /**
+     * Cette méthode permet de choisir une salle aléatoirement parmis les salles accéssibles et de la retourner
+     * @param sallesAccessibles, la liste des salles accessibles par le monstre
+     * @return une salle, la salle choisie aléatoirement parmis les salles accessibles
+     */
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
         if (sallesAccessibles.size() > 0) {

@@ -65,11 +65,9 @@ public class Salle implements ISalle {
     }
 
     /**
-     * Retourne la liste de toutes les salles voisines à la salle passé en
-     * paramètre .
+     * Retourne la liste de toutes les salles voisines 
      *
-     * @return la liste de toutes les salles voisines à la salle passé en
-     * paramètre
+     * @return la liste de toutes les salles voisines 
      */
     public ArrayList<Salle> voisines() {
         ArrayList<Salle> voisines = new ArrayList<>();
@@ -111,9 +109,14 @@ public class Salle implements ISalle {
         return nextSalle;
     }
 
+    /**
+     * Cette méthode permet de déterminer si deux salles sont adjacentes ou non 
+     * @param s un salle
+     * @return un booléen, vrai si les deux salles sont adjacentes, false sinon
+     */
     @Override
-    public boolean estAdjacente(ISalle autre) {
-        Salle salle = (Salle) autre;
+    public boolean estAdjacente(ISalle s) {
+        Salle salle = (Salle) s;
         ArrayList<Salle> salleAdjacentes = salle.voisines();
         return salleAdjacentes.contains(this);
     }

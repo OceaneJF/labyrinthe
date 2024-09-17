@@ -68,12 +68,14 @@ public class SalleTest {
     public void testGetX() {
         assertTrue(1 == salle1.getX());
         assertTrue(25 == salle2.getX());
+        assertFalse(10==salle6.getX());
     }
 
     @Test
     public void testGetY() {
         assertTrue(39 == salle4.getY());
         assertTrue(5 == salle6.getY());
+        assertFalse(5==salle1.getY());
     }
 
     @Test
@@ -83,10 +85,15 @@ public class SalleTest {
 
     @Test
     public void testGetType() {
+        // cas ou la salle est de type normale 
         assertEquals(ESalle.NORMALE, salle1.getType());
+         // cas ou la salle est de type entree
         assertEquals(ESalle.ENTREE, salle2.getType());
+         // cas ou la salle est de type sortie
         assertEquals(ESalle.SORTIE, salle3.getType());
+         // cas ou la salle est de type escalier montant 
         assertEquals(ESalle.ESCALIER_MONTANT, salle4.getType());
+         // cas ou la salle est de type escalier descendant
         assertEquals(ESalle.ESCALIER_DESCENDANT, salle5.getType());
     }
 
@@ -94,12 +101,14 @@ public class SalleTest {
     public void testSetX() {
         salle7.setY(2);
         assertTrue(salle7.getY() == 2);
+        assertFalse(salle7.getY()==5);
     }
 
     @Test
     public void testSetY() {
         salle2.setY(3);
         assertTrue(salle2.getY() == 3);
+        assertFalse(salle2.getY() == 7);
     }
 
     @Test

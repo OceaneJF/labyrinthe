@@ -15,11 +15,11 @@ public enum EDirection {
     CENTER;
 
     /**
-     * Renvoie le nombre de cases parcourues horizontalement lorsqu'on suit
-     * cette direction (0 pour Nord et Sud, -1 pour Ouest, 1 pour Est).
+     * Renvoie le nombre de salles parcourues horizontalement lorsqu'on suit
+     * cette direction (0 pour Nord, Sud et Center, -1 pour Ouest, 1 pour Est).
      *
      * @param dir la direction à considérer
-     * @return nombre de cases horizontales de cette direction
+     * @return nombre de salles horizontales de cette direction
      */
     static int mvtHoriz(EDirection dir) {
         int dh = -2;
@@ -40,11 +40,11 @@ public enum EDirection {
     }
 
     /**
-     * Renvoie le nombre de cases parcourues verticalement lorsqu'on suit cette
-     * direction (0 pour Est et Ouest, -1 pour Nord, 1 pour Sud).
+     * Renvoie le nombre de salles parcourues verticalement lorsqu'on suit cette
+     * direction (0 pour Est, Ouest et Center, -1 pour Nord, 1 pour Sud).
      *
      * @param dir la direction d'origine
-     * @return nombre de cases verticales de cette direction
+     * @return nombre de salles verticales de cette direction
      */
     static int mvtVertic(EDirection dir) {
         int dv = -2;

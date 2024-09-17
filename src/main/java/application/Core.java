@@ -36,7 +36,7 @@ public class Core {
         vue.add(this.heros);
 
         Labyrinthe lab = (Labyrinthe) labyrinthe;
-
+        // creation des monstres
         this.monstres = new ArrayList();
         for (int i = 0; i < 15; i++) {
             Monstre m = new personnages.Monstre(lab.salleAleatoire());

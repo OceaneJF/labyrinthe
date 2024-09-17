@@ -10,8 +10,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import labyrinthe.*;
 import personnages.Heros;
-
-import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -19,7 +17,9 @@ import java.util.Collection;
  */
 public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
 
+    // le heros correspondant au sprite
     private Heros heros;
+    // le labyrinthe dans lequel est affiché le sprite
     private ILabyrinthe labyrinthe;
 
     public HerosSprite(Heros h, ILabyrinthe lab) {
@@ -48,6 +48,10 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
         heros.setPosition(s);
     }
 
+    /**
+     * Cette méthode permet de modifier la salle choisie du personage en fonction de la direction choisie par le joueur avec les touches du clavier 
+     * @param t la touche préssée
+     */
     @Override
     public void handle(KeyEvent t) {
         KeyCode code = t.getCode();

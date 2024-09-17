@@ -45,6 +45,7 @@ public class Vue extends AVue implements IVue {
         dessin.dessinMurs(labyrinthe.getEtageCourant());
         // dessin des salles
         dessin.dessinSalles(labyrinthe.getEtageCourant());
+        // dessin des personnages 
         dessin.dessinSprites();
     }
 

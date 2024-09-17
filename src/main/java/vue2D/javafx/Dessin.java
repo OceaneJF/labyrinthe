@@ -91,6 +91,9 @@ public class Dessin extends Canvas {
         }
     }
 
+    /**
+     * Cette méthode permet de dessiner tous les personnages qui se trouve sur le meme étage que le heros
+     */
     public void dessinSprites() {
         for (ISprite s : sprites) {
             if (s.getPosition().getEtage().getNum() == labyrinthe.getEtageCourant().getNum()) {
@@ -108,6 +111,7 @@ public class Dessin extends Canvas {
                 sPerso = sh.getPerso().getPosition();
             }
         }
+        //éclairage 
         for (ISalle s : etage) {
             if (s.equals(sPerso) || distance(s, sPerso) < 5) {
                 c = Color.rgb(200, 200, 200);

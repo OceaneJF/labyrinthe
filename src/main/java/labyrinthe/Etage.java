@@ -87,21 +87,29 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
         return num;
     }
 
+    /**
+     * Cette méthode permet de savoir si les coordonnées d'une salle sont valide 
+     * @param salle la salle que l'on veut vérifier
+     * @return un booléen , vrai si les coordonnées de la salle sont valide, false sinon 
+     */
     boolean estDansPlateau(ISalle salle) {
         int l = salle.getEtage().getLargeur();
         int h = salle.getEtage().getHauteur();
         return salle.getX() >= 0 && salle.getX() < l && salle.getY() >= 0 && salle.getY() < h;
     }
 
+    /**
+     * Cette méthode ajoute une salle à un étage seulement si celle-ci n'est pas déjà présente dans l'étage et que ses coordonnées sont valide
+     * @param salle la salle que l'on veut ajouter 
+     * @return un booléen: vrai si la salle a été ajouté, false sinon 
+     */
     @Override
     public boolean add(ISalle salle) {
         if (!this.contains(salle)) {
             if (estDansPlateau(salle)) {
                 return super.add(salle);
             }
-            System.out.println("pas ds plateau");
         }
-        System.out.println("en double");
         return false;
     }
 

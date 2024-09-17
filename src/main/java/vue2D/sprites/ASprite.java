@@ -16,11 +16,16 @@ import static vue2D.AVue.UNITE;
  */
 public abstract class ASprite implements ISprite {
 
+    //le personnage correspondant au sprite
     private IPersonnage perso;
+    // les coordonnées du sprite
     private int xpix;
     private int ypix;
+    // la vitesse de déplacement
     private int pixel = 1;
+    //l'image correspondant au personnage
     private Image image;
+  
     private boolean enDeplacement = false;
 
     public ASprite(IPersonnage perso) {
@@ -64,6 +69,9 @@ public abstract class ASprite implements ISprite {
         this.ypix = ypix;
     }
 
+    /**
+     * Cette méthode permet mettre à jour les coordonnées du sprite pour que son déplacement soit plus fluide
+     */
     public void updatePosition() {
         ISalle sprite = perso.getPosition();
         double cibleX = sprite.getX() * UNITE;
@@ -90,6 +98,12 @@ public abstract class ASprite implements ISprite {
         }
     }
 
+    /**
+     * Cette méthode permet de savoir le sens du déplacement du sprite
+     * @param cible , les co
+     * @param pos
+     * @return 
+     */
     private int move(double cible, int pos) {
         if (cible - pos > 0) {
             return 1;

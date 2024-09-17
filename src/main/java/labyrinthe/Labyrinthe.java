@@ -52,6 +52,10 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
         return sallesAccessibles;
     }
 
+    /**
+     * Cette méthode choisie une salle aléatoirement parmis toutes les salles du labyrinthe et la retourne
+     * @return ISalle la salle choisie aléatoirement
+     */
     public ISalle salleAleatoire() {
         Random rand = new Random();
         int numSalle = rand.nextInt(this.size());
@@ -93,6 +97,11 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
         return null;
     }
 
+    /**
+     * Cette méthode recupère l'étage correspondant au numéro passé en parametre et le retourne 
+     * @param etageNum le numero de l'étage que l'on souhaite récupérer
+     * @return l'étage choisit
+     */
     public Etage getEtage(int etageNum) {
         Etage e = null;
         boolean found = false;

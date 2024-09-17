@@ -13,16 +13,25 @@ import java.util.Collection;
  */
 public class Heros extends APersonnage {
 
+    //La salle ou le joueur a choisit d'aller
     private ISalle salleChoisie;
 
     public Heros(ISalle position) {
         super(position);
     }
 
+    /**
+     * Cette méthode permet de récuperer la salle choisie
+     * @return une salle, la salle choisie
+     */
     public ISalle getSalleChoisie() {
         return salleChoisie;
     }
 
+    /**
+     * Cette méthode permet de modifier la salle choisie
+     * @param salleChoisie , la nouvelle salle choisie
+     */
     public void setSalleChoisie(ISalle salleChoisie) {
         this.salleChoisie = salleChoisie;
     }

@@ -32,7 +32,7 @@ public class MainJavaFX extends Application {
             @Override
             public void handle(long l) {
                 vue.dessiner();
-
+                // mise à jour de la position pour que les personnages ait un déplacement fluide
                 for (ISprite sprite : vue) {
                     ((ASprite) sprite).updatePosition();
                 }

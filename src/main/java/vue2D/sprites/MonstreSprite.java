@@ -13,8 +13,9 @@ import personnages.Monstre;
  * @author ojfrancois
  */
 public class MonstreSprite extends ASprite {
-
+    //le monstre correspondant au sprite
     private Monstre monstre;
+    //le labyrinthe dans lequel se trouve le monstre
     private ILabyrinthe labyrinthe;
 
     public MonstreSprite(Monstre m, ILabyrinthe lab) {

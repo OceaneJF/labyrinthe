@@ -70,6 +70,9 @@ public class EtageTest {
         assertArrayEquals(expected.toArray(), etage.toArray());
     }
 
+    /**
+     * Ce tester permet de déterminer si un étage est valide , c'est à dire qui ne contient pas de salles en double ni de salles avec des coordonnées invalide
+     */
     @Test
     public void testValide() {
         for (int i = 1; i <= 9; i++) {
@@ -80,7 +83,6 @@ public class EtageTest {
                 HashSet<ISalle> h = new HashSet<>();
                 Salle sn;
                 for (ISalle s : etage) {
-                    // s= new Salle(sa.getX(), sa.getY(),sa.getType(), sa.getEtage());
                     h.add(s);
                     sn = new Salle(s.getX(), s.getY(), s.getType(), s.getEtage());
                     if (!etage.estDansPlateau(sn)) {
@@ -94,6 +96,9 @@ public class EtageTest {
         }
     }
 
+    /**
+     * Ce test permet de déterminer si un étage est invalide 
+     */
     @Test
     public void testInvalide() {
         for (int i = 1; i <= 4; i++) {
