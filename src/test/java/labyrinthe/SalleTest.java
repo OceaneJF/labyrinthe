@@ -80,7 +80,10 @@ public class SalleTest {
 
     @Test
     public void testGetEtage() {
+        //test avec l'étage 1
         assertEquals(etage, salle1.getEtage());
+        //test avec l'étage 2
+        assertEquals(etage2,salle2.getEtage());
     }
 
     @Test
@@ -174,12 +177,6 @@ public class SalleTest {
         voisinesExpected.add(sd);
         voisinesExpected.add(sg);
         voisinesExpected.add(sem);
-        for (Salle s : voisinesExpected) {
-            System.out.println("VE " + s);
-        }
-        for (Salle s : voisines) {
-            System.out.println("V " + s);
-        }
         assertArrayEquals(voisinesExpected.toArray(), voisines.toArray());
         //cas ou la salle est un escalier descendant
         voisines = salle5.voisines();
@@ -194,7 +191,6 @@ public class SalleTest {
         voisinesExpected.add(sd);
         voisinesExpected.add(sg);
         voisinesExpected.add(sed);
-
         assertArrayEquals(voisinesExpected.toArray(), voisines.toArray());
     }
 

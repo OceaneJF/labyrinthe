@@ -58,11 +58,20 @@ public abstract class ASprite implements ISprite {
         return ypix;
     }
 
+    /**
+     * Cette méthode permet de dessiner le sprite
+     * @param g le GraphicContext
+     */
     @Override
     public void dessiner(GraphicsContext g) {
         g.drawImage(image, xpix, ypix, UNITE, UNITE);
     }
 
+    /**
+     * Cette méthode permet de mettre à jour les coordonnéescorrespondant à la position du sprite
+     * @param xpix un int, coordonnées x
+     * @param ypix un int, coordonnées y
+     */
     @Override
     public void setCoordonnees(int xpix, int ypix) {
         this.xpix = xpix;
@@ -99,10 +108,14 @@ public abstract class ASprite implements ISprite {
     }
 
     /**
-     * Cette méthode permet de savoir le sens du déplacement du sprite
-     * @param cible , les co
-     * @param pos
-     * @return 
+     * Cette méthode permet de déplacer le sprite en ajustant progressivement sa position actuelle
+     * en fonction de la position cible. Elle retourne une valeur indiquant la direction du mouvement.
+     *
+     * @param cible La position cible à atteindre.
+     * @param pos La position actuelle du sprite.
+     * @return 1 si la position actuelle est inférieure à la cible (déplacement vers la droite ou le bas),
+     *         -1 si la position actuelle est supérieure à la cible (déplacement vers la gauche ou le haut),
+     *         0 si la position actuelle est égale à la cible (pas de déplacement).
      */
     private int move(double cible, int pos) {
         if (cible - pos > 0) {
@@ -114,6 +127,10 @@ public abstract class ASprite implements ISprite {
         }
     }
 
+    /**
+     * Cette méthode permet de savoir si un sprite est en cours de déplacement ou non 
+     * @return un booléen, vrai si le sprite est en déplacement, false sinon 
+     */
     public boolean isEnDeplacement() {
         return enDeplacement;
     }

@@ -36,6 +36,11 @@ public class Heros extends APersonnage {
         this.salleChoisie = salleChoisie;
     }
 
+    /**
+     * Cette méthode renvoie la salle choisie par le joueur si celle-ci fait partie des salles accessibles sinon elle renvoie la position actuelle du heros
+     * @param sallesAccessibles , la liste des salles accessible pour le heros
+     * @return une salle, la salle choisie par le joueur si celle-ci fait partie des salles accessibles, la position actuelle du heros sinon
+     */
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
         if (salleChoisie != null) {

@@ -43,7 +43,6 @@ public class Etage extends ArrayList<ISalle> implements IEtage {
             salle = new Salle(Integer.parseInt(mots[0]), Integer.parseInt(mots[1]), recupType(mots[2]), this);
             boolean aAjoute = this.add(salle);
             if (!aAjoute) {
-                System.out.println(salle.getX() + " " + salle.getY());
                 throw new ExceptionInvalidFile("le fichier est invalide");
             }
         }

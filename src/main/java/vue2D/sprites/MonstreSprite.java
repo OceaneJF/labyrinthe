@@ -26,8 +26,10 @@ public class MonstreSprite extends ASprite {
 
     }
 
+
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
+        //On modifie la salle choisie uniquement quand le monstre n'est plus entrain de se déplacer 
         if (!isEnDeplacement()) {
             return monstre.faitSonChoix(sallesAccessibles);
         }

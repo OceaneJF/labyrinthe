@@ -26,12 +26,13 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
         super(h);
         this.heros = h;
         this.labyrinthe = lab;
-        super.setImage(new Image("file:icons/link/LinkRunShieldL1.gif"));
+        super.setImage(new Image("file:icons/link/LinkRunShieldD1.gif"));
 
     }
 
     @Override
     public ISalle faitSonChoix(Collection<ISalle> sallesAccessibles) {
+        //On modifie la salle choisie uniquement quand le heros n'est plus entrain de se déplacer 
         if (!isEnDeplacement()) {
             return heros.faitSonChoix(sallesAccessibles);
         }
@@ -59,18 +60,23 @@ public class HerosSprite extends ASprite implements EventHandler<KeyEvent> {
         int MD = 0;
         switch (code) {
             case LEFT:
+                super.setImage(new Image("file:icons/link/LinkRunShieldL1.gif"));
                 d = EDirection.OUEST;
                 break;
             case RIGHT:
+                super.setImage(new Image("file:icons/link/LinkRunR1.gif"));
                 d = EDirection.EST;
                 break;
             case UP:
+                super.setImage(new Image("file:icons/link/LinkRunU1.gif"));
                 d = EDirection.NORD;
                 break;
             case DOWN:
+                super.setImage(new Image("file:icons/link/LinkRunShieldD1.gif"));
                 d = EDirection.SUD;
                 break;
             case M:
+                super.setImage(new Image("file:icons/link/LinkRunShieldL1.gif"));
                 MD = 1;
                 d=EDirection.CENTER;
                 break;

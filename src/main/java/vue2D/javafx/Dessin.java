@@ -51,7 +51,6 @@ public class Dessin extends Canvas {
         largeur = labyrinthe.getEtageCourant().getLargeur();
         hauteur = labyrinthe.getEtageCourant().getHauteur();
         setWidth(largeur * unite);
-        System.out.println(largeur * unite + " / " + hauteur * unite);
         setHeight(hauteur * unite);
         tampon = this.getGraphicsContext2D();
         chargementImages();
